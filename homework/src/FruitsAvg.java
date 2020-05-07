@@ -2,40 +2,57 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Optional;
+import java.util.Arrays;
 import java.util.OptionalDouble;
-import java.util.stream.Collectors;
 
 public class FruitsAvg
 {
+    public static void main(String[] args) throws IOException {
+        Path filePath = Path.of(args[0]);
+        String[] names = Arrays.copyOfRange(args, 1, args.length);
 
-  public static void main(String[] args) throws IOException {
-    String[] names = names(args);
-    try (BufferedReader br = Files.newBufferedReader(Path.of(args[0]))) {
-      OptionalDouble average = br.lines()
-                                 .map(Fruit::new)
-                                 .filter(f -> contains(names, f.getName()))
-                                 .mapToInt(Fruit::getPrice)
-                                 .average();
+        double average1 = average1(filePath, names);
+        System.out.println(average1);
 
-      average.ifPresent(System.out::println);
+        double average2 = average2(filePath, names);
+        System.out.println(average2);
     }
-  }
 
-  private static String[] names(String[] args) {
-    String[] names = new String[args.length - 1];
-    for (int i = 0; i < args.length - 1; i++) {
-      names[i] = args[i + 1];
-    }
-    return names;
-  }
+    public static double average1(Path filePath, String[] names) throws IOException {
+        try (BufferedReader br = Files.newBufferedReader(filePath)) {
+            Arrays.sort(names);
+            String line;
+            int total = 0;
+            int hitCount = 0;
+            while ((line = br.readLine()) != null) {
+                Fruit f = new Fruit(line);
+                if (Arrays.binarySearch(names, f.getName()) >= 0) {
+                    hitCount++;
+                    total += f.getPrice();
+                }
+            }
 
-  private static boolean contains(String[] names, String name) {
-    for (String n : names) {
-      if (n.equals(name)) {
-        return true;
-      }
+            if (hitCount > 0) {
+                return (double) total / hitCount;
+            }
+
+            return 0;
+        }
     }
-    return false;
-  }
+
+    public static double average2(Path filePath, String[] names) throws IOException {
+        try (BufferedReader br = Files.newBufferedReader(filePath)) {
+            Arrays.sort(names);
+            OptionalDouble average = br.lines()
+                                       .map(Fruit::new)
+                                       .filter(f -> Arrays.binarySearch(names, f.getName()) >= 0)
+                                       .mapToInt(Fruit::getPrice)
+                                       .average();
+
+            if (average.isPresent()) {
+                return average.getAsDouble();
+            }
+            return 0;
+        }
+    }
 }
