@@ -8,6 +8,23 @@ int first = p.first(); //1
 int second = p.second(); //2
 ```
 
+## 発展課題（余裕があれば）  {.unnumbered}
+
+```Pair```を任意の型の組を保持できるようにせよ。
+
+```java
+var p = new Pair(1,"foo");
+int first = p.first(); //1
+String second = p.second(); //foo
+
+var p = new Pair(true, new Pair(1,2));
+boolean first = p.first();
+var second = p.second();
+int secondFirst = second.first(); //1
+int secondSecond = second.second(); //2
+```
+
+
 # 与えられた整数のリスト```List```から偶数のみを抽出するメソッド```evensof```を```ListUtil```クラスに作成せよ。
 
 ## 使用例 {.unnumbered}
