@@ -10,4 +10,12 @@ public class Average
     int average = total / args.length;
     System.out.println(average);
   }
+
+  public static void varSample() {
+    var str = "aiueo";
+    var num = 123;
+    var error; //error
+
+    var upperStr = str.toUpperCase();
+  }
 }
