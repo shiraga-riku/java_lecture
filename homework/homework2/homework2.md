@@ -24,7 +24,6 @@ int secondFirst = second.first(); //1
 int secondSecond = second.second(); //2
 ```
 
-
 # 与えられた整数のリスト```List```から偶数のみを抽出するメソッド```evensof```を```ListUtil```クラスに作成せよ。
 
 ## 使用例 {.unnumbered}
@@ -89,6 +88,85 @@ ListUtil.soreted(List.of(3,2,5,6)); //false
 ```java
 ListUtil.positions(10 List.of(10, 15, 20, 10, 10, 33)); //[0,3,4]
 ListUtil.positions(3, List.of(1, 2, 3, 4, 5]); //[2]
+```
+
+# ２つのベクトル（リスト）の内積は対応する各要素の積の和で表せる。```[1,2,3]```と```[4,5,6]```の内積は、```1*4 + 2*5 + 3*6```である。２つのリストを受け取りその内積を計算するメソッド```scalarProduct```を```ListUtil```に実装せよ。
+
+## 実行のイメージ {.unnumbered}
+```java
+ListUtil.scalarProduct(List.of(1,2,3), List.of(4,5,6)); // 32
+``` 
+# ４つの整数のリスト```List```を受け取り、４つ組のリストに変換するメソッド```zip4```を```ListUtil```クラスに作成せよ。ここで、４つ組```(1,2,3,4)```は```new Pair(1, new Pair(2, new Pair(3,4)))```で表されるものとする。
+
+## 実行のイメージ {.unnumbered}
+```java
+var tetrad = ListUtil.zip4(List.of(1,2,3), List.of(10,20,30), List.of(100,200,300), List.of(1000,2000,3000));
+var first = tetrad.first(); //1
+var tuple = tetrad.second(); 
+var second = tuple.first(); //2
+var pair = tuple.second(); 
+var thrid = pair.first(); //3
+var fourh = pair.second(); //4
+```
+
+# 3目並べのプログラム```ThreeInRow```を途中まで作成した。これを完成させよ。
+
+## 途中まで作成したプログラム {.unnumbered}
+
+```java
+import java.util.Scanner;
+
+/**
+* このような入力値の評価と出力を繰り返すプログラムをREPL(Read, Eval, Print, Loop)と呼ぶ。
+*/
+public class ThreeInRow
+{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            System.out.print("何か入力してください:");
+            var line = sc.nextLine();
+            if (line.equals("quit")) {
+                System.out.print("bye");
+                break;
+            }
+            System.out.println(line);
+        }
+    }
+}
+```
+
+## 実行のイメージ {.unnumbered}
+```shell
+３目並べにようこそ
+先手・後手を選んでください。先手(1),後手(2):1
+
+次の手を入力してください(行 列):0 0
+×−−
+−−−
+−−−
+
+コンピュータの番です...(0 1)
+×○−
+−−−
+−−−
+
+次の手を入力してください(行 列):1 1
+×○−
+−×−
+−−−
+
+コンピュータの番です...(0 2) 
+×○○
+−×−
+−−−
+
+次の手を入力してください(行 列):2 2
+×○○
+−×−
+−−×
+先手の勝ち!
 ```
 
 # JUnit4のソースコードを読み、デザインパターンが適用 されている箇所を3つ抽出せよ
