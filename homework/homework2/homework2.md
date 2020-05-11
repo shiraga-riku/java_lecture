@@ -100,16 +100,29 @@ ListUtil.scalarProduct(List.of(1,2,3), List.of(4,5,6)); // 32
 
 ## 実行のイメージ {.unnumbered}
 ```java
-var tetrad = ListUtil.zip4(List.of(1,2,3), List.of(10,20,30), List.of(100,200,300), List.of(1000,2000,3000));
-var first = tetrad.first(); //1
-var tuple = tetrad.second(); 
-var second = tuple.first(); //2
+var tetrads = ListUtil.zip4(List.of(1,2,3), List.of(10,20,30), List.of(100,200,300), List.of(1000,2000,3000));
+var firstTetrad = tetrads.get(0);  //リストの最初の４つ組
+var first = firstTetrad.first(); //1
+var tuple = firstTetrad.second(); 
+var second = tuple.first(); //10
 var pair = tuple.second(); 
-var thrid = pair.first(); //3
-var fourh = pair.second(); //4
+var thrid = pair.first(); //100
+var fourh = pair.second(); //1000
 ```
 
-# 3目並べのプログラム```ThreeInRow```を途中まで作成した。これを完成させよ。
+new Pair(1, new Pair(2)) 
+
+# 3目並べのプログラム```ThreeInRow```を途中まで作成した。これを完成させよ。3目並べのルールは[wiki](https://ja.wikipedia.org/wiki/%E4%B8%89%E7%9B%AE%E4%B8%A6%E3%81%B9)を参照。
+
+## 満たすべき仕様 {.unnumbered}
+
+以下のステップでできるところまで実装してみよ。
+
+* ステップ１）先手・後手とも人がプレイヤーとなって対戦できる。
+* ステップ２）人が先手、コンピュータが後手として対戦できる。
+* ステップ３）人の先手・後手を選択できる。
+* ステップ４）コンピュータのアルゴリズム（次の手の計算方法）を切り替えられる。
+* ステップ５）JavaFXなどを使ってGUIゲームにする。
 
 ## 途中まで作成したプログラム {.unnumbered}
 
