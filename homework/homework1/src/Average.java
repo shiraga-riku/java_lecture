@@ -14,7 +14,6 @@ public class Average
   public static void varSample() {
     var str = "aiueo";
     var num = 123;
-    var error; //error
 
     var upperStr = str.toUpperCase();
   }
