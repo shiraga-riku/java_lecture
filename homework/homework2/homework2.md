@@ -182,9 +182,3 @@ public class ThreeInRow
 先手の勝ち!
 ```
 
-# JUnit4のソースコードを読み、デザインパターンが適用 されている箇所を3つ抽出せよ
-[参照](https://github.com/junit-team/junit4) 
-
-# SOLID原則と呼ばれる設計原則について調べてみよ。
-
-
