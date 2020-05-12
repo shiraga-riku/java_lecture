@@ -1,4 +1,4 @@
-# お惣菜を表すレシピクラス（```Recipe```）を作成せよ。レシピクラスは、お惣菜名（文字列）とカロリー（Kcal、実数）をデータとして持つ。レシピクラスのメソッドは以下の通り。
+# お惣菜を表すレシピクラス```Recipe```を作成せよ。レシピクラスは、お惣菜名（文字列）とカロリー（Kcal、実数）をデータとして持つ。レシピクラスのメソッドは以下の通り。
 
 |メソッド|振舞い|
 |:-:|:-:|
@@ -16,7 +16,7 @@ System.out.println(r1.getName()); //ハンバーグ
 System.out.println(r1.getCal()); //200.5
 ```
 
-# 献立を表す献立クラス（```Menu```）を作成せよ。献立クラスは、献立名、献立タイプ、レシピオブジェクトの集合データとして持つ。献立クラスのメソッドは以下の通り。
+# 献立を表す献立クラス```Menu```を作成せよ。献立クラスは、献立名、献立タイプ、レシピオブジェクトの集合データとして持つ。献立クラスのメソッドは以下の通り。
 
 |メソッド|振舞い|
 |:-:|:-:|
@@ -41,7 +41,7 @@ System.out.println(menu.getCal()); //320.5
 System.out.println(menu.getRecipes().get(0).getName()); //ハンバーグ
 ```
 
-# 献立インスタンスを複数保持する献立集合クラス(```MenuSet```）を作成せよ。献立集合クラスは、献立インスタンスのリストをデータとして持つ。献立集合クラスのメソッドは以下の通り。
+# 献立インスタンスを複数保持する献立集合クラス```MenuSet```を作成せよ。献立集合クラスは、献立インスタンスのリストをデータとして持つ。献立集合クラスのメソッドは以下の通り。
 
 |メソッド|振舞い|
 |:-:|:-:|
@@ -57,7 +57,7 @@ MenuSet menuSet = new MenuSet(List.of(menu1, menu2));
 var menus = menuSet.getMenus(); //メニュー一覧を取得
 ```
 
-# 献立集合クラス```MenuSet```に指定した献立タイプのメニューリスト```List```のみを返すメソッド```getMenusByType``を追加せよ。
+# 献立集合クラス```MenuSet```に指定した献立タイプのメニューリスト```List```のみを返すメソッド```getMenusByType```を追加せよ。
 
 ## 使用例 {.unnumbered}
 
@@ -110,6 +110,24 @@ Menu menu3 = new Menu("のり弁当", "和食", List.of(r4, r5)); //r4とr5は�
 MenuSet menuSet = new MenuSet(List.of(menu1, menu2, menu3));
 var menus1 = menuSet.getMenusBySpec(new MenuTypeSpec("和食")); //和食のみのメニュー一覧を抽出
 var menus2 = menuSet.getMenusBySpec(new CalorieOverSpec(100));  //100カロリー以上のメニュー一覧を抽出
+```
+
+# 上記のメニュー仕様インターフェース```MenuSpec```を実装する以下の具象クラスを作成してみよ。
+
+|クラス|振舞い|
+|:-:|:-:|
+|AndSpec|２つの```MenuSpec```が満たす場合にのみ```true```となる条件。論理積|
+|OrSpec|２つの```MenuSpec```のいずれかを満たす場合にのみ```true```となる条件。論理和|
+|NotSpec|```MenuSpec``が満たさない場合にのみ```true```となる条件。否定|
+
+## 使用例 {.unnumbered}
+
+```java
+Menu menu1 = new Menu("ハンバーグ弁当", "洋食", List.of(r1, r2));  //r1とr2はレシピインスタンスとする
+Menu menu2 = new Menu("鮭弁当", "和食", List.of(r3, r4)); //r3とr4はレシピインスタンスとする
+Menu menu3 = new Menu("のり弁当", "和食", List.of(r4, r5)); //r4とr5はレシピインスタンスとする
+MenuSet menuSet = new MenuSet(List.of(menu1, menu2, menu3));
+var menus = menuSet.getMenusBySpec(new AndSpec(new MenuTypeSpec("和食"), new CalorieOverSpec(100));)  //和食かつ100カロリー以上のメニュー一覧を抽出
 ```
 
 # 前回の課題で作成した、四則演算（足し算、引き算、掛け算、割り算）可能な計算プログラム```Calc.java```を演算子のポリモルフィズムを用いて改良せよ。
