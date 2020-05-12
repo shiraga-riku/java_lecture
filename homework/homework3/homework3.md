@@ -41,6 +41,8 @@ System.out.println(menu.getCal()); //320.5
 System.out.println(menu.getRecipes().get(0).getName()); //ハンバーグ
 ```
 
+# 前回の課題で作成した、四則演算（足し算、引き算、掛け算、割り算）可能な計算プログラム```Calc.java```を演算子のポリモルフィズムを用いて改良せよ。
+
 # 献立インスタンスを複数保持する献立集合クラス```MenuSet```を作成せよ。献立集合クラスは、献立インスタンスのリストをデータとして持つ。献立集合クラスのメソッドは以下の通り。
 
 |メソッド|振舞い|
@@ -129,8 +131,6 @@ Menu menu3 = new Menu("のり弁当", "和食", List.of(r4, r5)); //r4とr5は�
 MenuSet menuSet = new MenuSet(List.of(menu1, menu2, menu3));
 var menus = menuSet.getMenusBySpec(new AndSpec(new MenuTypeSpec("和食"), new CalorieOverSpec(100));)  //和食かつ100カロリー以上のメニュー一覧を抽出
 ```
-
-# 前回の課題で作成した、四則演算（足し算、引き算、掛け算、割り算）可能な計算プログラム```Calc.java```を演算子のポリモルフィズムを用いて改良せよ。
 
 # JUnit4のソースコードを読み、デザインパターンが適用 されている箇所を3つ抽出せよ
 [参照](https://github.com/junit-team/junit4) 
