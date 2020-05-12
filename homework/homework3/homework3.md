@@ -118,7 +118,7 @@ var menus2 = menuSet.getMenusBySpec(new CalorieOverSpec(100));  //100カロリ�
 |:-:|:-:|
 |AndSpec|２つの```MenuSpec```が満たす場合にのみ```true```となる条件。論理積|
 |OrSpec|２つの```MenuSpec```のいずれかを満たす場合にのみ```true```となる条件。論理和|
-|NotSpec|```MenuSpec``が満たさない場合にのみ```true```となる条件。否定|
+|NotSpec|```MenuSpec```が満たさない場合にのみ```true```となる条件。否定|
 
 ## 使用例 {.unnumbered}
 
