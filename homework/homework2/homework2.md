@@ -152,6 +152,7 @@ public class ThreeInRow
 
 ## 実行のイメージ {.unnumbered}
 ```shell
+> java ThreeInRow
 ３目並べにようこそ
 先手・後手を選んでください。先手(1),後手(2):1
 
