@@ -1,4 +1,4 @@
-# homework2で作成した```ListUtil```を含むプログラムのパッケージを```jp.co.aivick.homework3```にしてみよ。
+# homework2で作成した```ListUtil```を含むプログラムのパッケージを```jp.co.aivick.homework2```にしてみよ。
 
 # 上記のパッケージ化したプログラムのjarファイル```homework2```を生成してみよ。
 

@@ -26,7 +26,7 @@ System.out.println(r1.getCal()); //200.5
 |getRecipes|献立が持つすべてのレシピをリスト```List```として返す|
 |getCal|献立のカロリー、すなわち、献立が持つ全てのお惣菜のカロリー合計、を返す|
 
-ここで、献立タイプは```"和食", "洋食", "中華"``のいずれかの文字列で表されるものとする。
+ここで、献立タイプは```"和食", "洋食", "中華"```のいずれかの文字列で表されるものとする。
 
 ## 使用例 {.unnumbered}
 
@@ -35,7 +35,7 @@ Recipe r1 = new Recipe("ハンバーグ", 200.5);
 Recipe r2 = new Recipe("目玉焼き", 120);
 
 Menu menu = new Menu("ハンバーグ弁当", "洋食", List.of(r1, r2));
-System.out.println(menu.getName()); //ハンバーグ
+System.out.println(menu.getName()); //ハンバーグ弁当
 System.out.println(menu.getType()); //洋食
 System.out.println(menu.getCal()); //320.5
 System.out.println(menu.getRecipes().get(0).getName()); //ハンバーグ
@@ -129,7 +129,7 @@ Menu menu1 = new Menu("ハンバーグ弁当", "洋食", List.of(r1, r2));  //r1
 Menu menu2 = new Menu("鮭弁当", "和食", List.of(r3, r4)); //r3とr4はレシピインスタンスとする
 Menu menu3 = new Menu("のり弁当", "和食", List.of(r4, r5)); //r4とr5はレシピインスタンスとする
 MenuSet menuSet = new MenuSet(List.of(menu1, menu2, menu3));
-var menus = menuSet.getMenusBySpec(new AndSpec(new MenuTypeSpec("和食"), new CalorieOverSpec(100));)  //和食かつ100カロリー以上のメニュー一覧を抽出
+var menus = menuSet.getMenusBySpec(new AndSpec(new MenuTypeSpec("和食"), new CalorieOverSpec(100)));  //和食かつ100カロリー以上のメニュー一覧を抽出
 ```
 
 # JUnit4のソースコードを読み、デザインパターンが適用 されている箇所を3つ抽出せよ
