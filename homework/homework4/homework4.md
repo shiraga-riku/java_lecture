@@ -14,7 +14,7 @@ $java -jar homework3
 
 # homework2で作成したペアクラス```Pair```を任意の型が保持できるジェネリッククラスにせよ。
 
-# HTTPステータスコードは、HTTPリクエストの結果を表す。結果に応じた多種のステータスコードが定義されている。プログラムの引数として、ステータスコードを与えるとそのメッセージを返すクラス```StatusCode```を作成せよ。ステータスコードは(MDN)[https://developer.mozilla.org/ja/docs/Web/HTTP/Status]を参考にせよ。ただし、全てのコードではなく、上記から選んだ任意の10個のコードで良い。
+# HTTPステータスコードは、HTTPリクエストの結果を表す。結果に応じた多種のステータスコードが定義されている。プログラムの引数として、ステータスコードを与えるとそのメッセージを返すクラス```StatusCode```を作成せよ。ステータスコードは[MDN](https://developer.mozilla.org/ja/docs/Web/HTTP/Status)を参考にせよ。ただし、全てのコードではなく、上記から選んだ任意の10個のコードで良い。
 
 ## 実行例 {.unnumbered}
 
@@ -25,7 +25,7 @@ $java StatusCode 404
 Not Found
 ```
 
-# コレクションフレームワークには(```Stack```クラス)[https://docs.oracle.com/javase/jp/13/docs/api/java.base/java/util/Stack.html]がある。Stack（スタック）とはLIFOを実現する抽象データ型(wiki)[https://ja.wikipedia.org/wiki/スタック]である。標準ライブラリの```Stack```と同じ振舞いをする```MyStack```を独自に実装してみよ。
+# コレクションフレームワークには[```Stack```クラス](https://docs.oracle.com/javase/jp/13/docs/api/java.base/java/util/Stack.html)がある。Stack（スタック）とはLIFOを実現する抽象データ型[wiki](https://ja.wikipedia.org/wiki/スタック)である。標準ライブラリの```Stack```と同じ振舞いをする```MyStack```を独自に実装してみよ。
 
 # 指定されたテキストファイルの中に含まれる文字をカウントして集計して降順に出力するクラス```CountCharacter```を作成せよ。
 
@@ -57,4 +57,4 @@ $java Grep /tmp/ abc
 /tmp/subdir/piyo.txt 12 55
 ```
 
-# 上記で作成したペアクラス```Pair```は任意の型を保持できるが、数値の型だけが保持できる```NumPair```クラスを作成してみよ。ヒント：型パラメータは、境界付けることができる。数値の基底クラスは```Number```クラスである。(Qiita)[https://qiita.com/pebblip/items/1206f866980f2ff91e77]
+# 上記で作成したペアクラス```Pair```は任意の型を保持できるが、数値の型だけが保持できる```NumPair```クラスを作成してみよ。ヒント：型パラメータは、境界付けることができる。数値の基底クラスは```Number```クラスである。[Qiita](https://qiita.com/pebblip/items/1206f866980f2ff91e77)
