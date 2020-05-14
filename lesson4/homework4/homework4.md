@@ -39,7 +39,7 @@ z 50
 あ 10
 ```
 
-# 与えられたディレクトリパスの中から指定された文字列を含むファイルを検索するクラス```Grep```を作成せよ。
+# 与えられたディレクトリパスの中から指定された文字列を含むファイルを検索するクラス```CountCharacters```を作成せよ。
 
 ## 仕様 {.unnumbered}
 
@@ -51,7 +51,7 @@ z 50
 ## 実行例 {.unnumbered}
 
 ```bash
-$java Grep /tmp/ abc 
+$java CountCharacters /tmp/ abc 
 /tmp/hoge.txt 123 350 
 /tmp/foo.txt 20
 /tmp/subdir/piyo.txt 12 55
