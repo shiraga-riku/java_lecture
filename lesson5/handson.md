@@ -3,7 +3,7 @@
 ## 資材の取得 
 
 * 適当な作業ディレクトリを作成する。
-* 私のリポジトリから、(これ)[https://github.com/pebblip/java_lecture/tree/master/lesson5/mvnlecture]をダウンロードして、先程作成したディレクトリに配置。
+* 私のリポジトリから、[これ](https://github.com/pebblip/java_lecture/tree/master/lesson5/mvnlecture) をダウンロードして、先程作成したディレクトリに配置。
 
 ## IDEの設定
 
