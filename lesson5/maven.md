@@ -1,4 +1,6 @@
-# mavenコンテナを立ち上げる。
+# mavenことはじめ
+
+## mavenコンテナを立ち上げる。
 
 ```
 $ docker-compose up -d
@@ -7,7 +9,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 92999bacbda7        mvnlecture_dev      "/usr/local/bin/mvn-…"   9 seconds ago       Up 8 seconds                            mvnlecture_dev_1
 ```
 
-# mavenコンテナにアタッチ。
+## mavenコンテナにアタッチ。
 
 ```
 $ docker-compose exec dev bash
@@ -18,7 +20,7 @@ bash-4.2# ls
 docker-compose.yml  Dockerfile
 ```
 
-# mavenコンテナ内でmvnコマンドを実行してmavenプロジェクトを作成する。
+## mavenコンテナ内でmvnコマンドを実行してmavenプロジェクトを作成する。
 
 ```
 bash-4.2# mvn archetype:generate -DarchetypeArtifiactId=maven-archetype-quickstart -DinteractiveMode=false -DgroupId=aivick -DartifactId=mavenlecture
@@ -32,7 +34,7 @@ bash-4.2# mvn archetype:generate -DarchetypeArtifiactId=maven-archetype-quicksta
 bash4.2# ls
 docker-compose.yml  Dockerfile mavenlecture
 ```
-# 生成された```pom.xml```を確認する。
+## 生成された```pom.xml```を確認する。
 
 ```
 bash-4.2# cd mavenlecture/
@@ -60,9 +62,9 @@ bash-4.2# cat pom.xml
 </project>
 ```
 
-# 初期生成されているプログラム```App.java```と```AppTest```は削除する。
+## 初期生成されているプログラム```App.java```と```AppTest```は削除する。
 
-# Javaのコンパイルバージョンを13に変更する。
+## Javaのコンパイルバージョンを13に変更する。
 
 以下の設定を```pom.xml```に追加する。
 
@@ -83,7 +85,7 @@ bash-4.2# cat pom.xml
 </build>
 ```
 
-# サンプルプログラムを作成する。
+## サンプルプログラムを作成する。
 
 ```java
 package aivick;
@@ -94,9 +96,9 @@ public class Sum
         System.out.println(Integer.parseInt(args[0]) + Integer.parseInt(args[1]));
     }
 }
-
 ```
-# mvnコマンドでコンパイルしてみる。
+
+## mvnコマンドでコンパイルしてみる。
 
 ```
 bash-4.2# mvn compile
@@ -104,7 +106,7 @@ bash-4.2# ls target
 classes  generated-sources  maven-status
 ```
 
-# mvnコマンドでjarを生成してみる。
+## mvnコマンドでjarを生成してみる。
 
 ```
 bash-4.2# mvn package
@@ -112,14 +114,16 @@ bash-4.2# ls target
 classes  generated-sources  generated-test-sources  maven-archiver  mavenlecture-1.0-SNAPSHOT.jar  maven-status
 ```
 
-# 生成したjarを実行してみる。
+## 生成したjarを実行してみる。
 
 ```
 bash-4.2# java -cp target/mavenlecture-1.0-SNAPSHOT.jar aivick.Sum 1 2
 3
 ```
 
-# jar作成時にManifestファイルを作成するようにビルド方法を変える。
+## jar作成時にManifestファイルを作成するようにビルド方法を変える。
+
+以下のプラグインを```pom.xml```に追加する。
 
 ```xml
 <plugin>
@@ -136,7 +140,7 @@ bash-4.2# java -cp target/mavenlecture-1.0-SNAPSHOT.jar aivick.Sum 1 2
 </plugin>
 ```
 
-# 生成したjarを再度実行してみる。
+## 生成したjarを再度実行してみる。
 
 今度はクラスを指定する必要がない。
 
@@ -145,15 +149,87 @@ bash-4.2# java -jar target/mavenlecture-1.0-SNAPSHOT.jar 1 2
 3
 ```
 
-# ```pom.xml```のJUnitをバージョン5に変更する。
+# JUnitことはじめ
+
+## ```pom.xml```にJUnit5を設定する。
 
 ```xml
-<dependency>
-    <groupId>org.junit.jupiter</groupId>
-    <artifactId>junit-jupiter-engine</artifactId>
-    <version>5.6.2</version>
-    <scope>test</scope>
-</dependency>
+  <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.6.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+```
+
+```xml
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.0</version>
+      </plugin>
+    </plugins>
+  </build>
+```
+
+## 単体テストを書いてみる。
+
+### テスト対象のクラス
+
+```src/main/java/aivick```に以下のクラスを作成する。
+
+```java
+package aivick;
+
+public class Sum
+{
+    public static int sum(int x, int y) {
+        return x + y;
+    }
+}
+```
+
+### テストクラス
+
+```src/test/java/aivick```に以下のクラスを作成する。
+
+```java
+package aivick;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+class SumTest
+{
+    @Test
+    void 足し算できること() {
+        int actual = Sum.sum(1, 2);
+        assertEquals(3, actual);
+    }
+}
+```
+
+## テストを実行してみる。
+
+```
+bash-4.2# mvn test
+//省略
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.853 s
+[INFO] Finished at: 2020-05-14T23:53:56Z
+[INFO] ------------------------------------------------------------------------
+```
+
+
+
 
 
 
