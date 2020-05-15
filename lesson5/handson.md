@@ -1,3 +1,21 @@
+# 準備
+
+## 資材の取得 
+
+* 適当な作業ディレクトリを作成する。
+* 私のリポジトリから、(これ)[https://github.com/pebblip/java_lecture/tree/master/lesson5/mvnlecture]をダウンロードして、先程作成したディレクトリに配置。
+
+## IDEの設定
+
+各自のIDEにmavenのプラグインを設定する。以下は参考・・・
+今設定できなくてもOK.
+
+### VSCodeの場合
+https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-maven
+
+### Eclipseの場合
+https://www.eclipse.org/m2e/
+
 # mavenことはじめ
 
 ## mavenコンテナを立ち上げる。
