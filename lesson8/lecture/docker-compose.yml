@@ -1,6 +1,13 @@
 version: "3.5"
 
 services:
+  jdk:
+    image: maven:3.6.3-jdk-13
+    volumes:
+      - .:/app
+      - ./repository:/root/.m2/repository
+    working_dir: /app
+
   mysql:
     image: mysql:8.0.19
     environment:
@@ -9,6 +16,8 @@ services:
     volumes:
       - /var/lib/mysql
       - ./docker/myconf:/etc/mysql/conf.d
+    ports:
+    - ${MYSQL_PORT:-3306}:3306
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin

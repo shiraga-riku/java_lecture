@@ -1,9 +1,0 @@
-version: "3.5"
-
-services:
-  dev:
-    build:
-      context: .
-    volumes:
-    - .:/local/app
-    working_dir: /local/app
