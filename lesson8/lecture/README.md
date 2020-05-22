@@ -4,7 +4,7 @@ JDBC/Domaの基本サンプルプログラム
 # Docker起動
 
 ```
-# docker-compose up -d
+$ docker-compose up -d
 ```
 
 # JDBCサンプルの実行
