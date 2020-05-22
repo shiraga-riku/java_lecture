@@ -10,7 +10,8 @@ import java.sql.Statement;
 public class JdbcMain
 {
     public static void main(String[] args) throws Exception {
-        selectMenu();
+        insertMaterial(args[0], Double.parseDouble(args[1]));
+        //selectMenu();
         //selectMenuByNameDanger(args[0]);
         //selectMenuByNameSafe(args[0]);
     }
@@ -61,7 +62,7 @@ public class JdbcMain
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
-            statement.setString(1,  name);
+            statement.setString(1, name);
 
             ResultSet resultset = statement.executeQuery();
 
@@ -73,22 +74,27 @@ public class JdbcMain
         }
     }
 
-    public static void insert() throws Exception {
-        Connection connection = DriverManager.getConnection(
-            "jdbc:mysql://localhost/javalesson?user=root&password=pass");
-        connection.setAutoCommit(false);
+    public static void insertMaterial(String materialName, double cal) throws Exception {
+        try (Connection connection = DriverManager.getConnection(
+            "jdbc:mysql://mysql/mydatabase?user=root&password=root")) {
 
-        String sql = "insert into person(name, age) values (?, ?)";
+            connection.setAutoCommit(false);
+            try {
 
-        PreparedStatement statement = connection.prepareStatement(sql);
+                String sql = "insert into materials(material_name, cal) values (?, ?)";
 
-        statement.setString(1, "nishi");
-        statement.setInt(2, 20);
+                PreparedStatement statement = connection.prepareStatement(sql);
 
-        int rows = statement.executeUpdate();
+                statement.setString(1, materialName);
+                statement.setDouble(2, cal);
 
-        connection.rollback();
-        statement.close();
-        connection.close();
+                int rows = statement.executeUpdate();
+                connection.commit();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+                connection.rollback();
+            }
+        }
     }
 }

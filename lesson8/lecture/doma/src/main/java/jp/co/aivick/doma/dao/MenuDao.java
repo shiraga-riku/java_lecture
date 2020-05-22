@@ -11,4 +11,7 @@ public interface MenuDao
 {
     @Select
     public List<Menu> findAll();
+
+    @Select
+    public List<Menu> findByName(String name);
 }
