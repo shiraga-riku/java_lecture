@@ -62,4 +62,4 @@ ALTER TABLE `menu_recipe`
 ALTER TABLE `recipe_material`
     ADD CONSTRAINT `recipe_material_fk1` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`),
     ADD CONSTRAINT `recipe_material_fk2` FOREIGN KEY (`material_id`) REFERENCES `materials` (`material_id`);
-COMMIT;
+
