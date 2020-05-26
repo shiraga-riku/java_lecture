@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>First Spring Boot</title>
+</head>
+<body>
+
+<form action="/firstform" method="post">
+  <input type="text" name="num1" th:value="${num1}"> +
+  <input type="text" name="num2" th:value="${num2}">
+  <button type="submit">=</button>
+  [[ ${sum} ]]
+</form>
+
+</body>
+</html>

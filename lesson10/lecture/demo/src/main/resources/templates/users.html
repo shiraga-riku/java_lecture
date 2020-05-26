@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>First Spring Boot</title>
+
+  <style>
+    table {
+      border: 1px solid gray;
+    }
+
+    table th, table td {
+      border: 1px solid gray;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>ユーザ一覧</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>名前</th>
+    <th>年齢</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="user : ${users}">
+    <td th:text="${user.name}"></td>
+    <td th:text="${user.age}"></td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
