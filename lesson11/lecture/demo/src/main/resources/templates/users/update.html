@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>ユーザ更新</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+
+  <h2>ユーザ更新</h2>
+
+  <form th:action="@{'/users/update/' + *{id}}" method="post" th:object="${userForm}">
+    ID: [[ *{id} ]] <br/>
+    名前: <input type="text" name="name" th:value="*{name}"> <br/>
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="err"></div>
+    メールアドレス: <input type="text" name="email" th:value="*{email}">
+    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorclass="err"></div>
+    <button type="submit">更新</button>
+  </form>
+
+</div>
+</body>
+</html>
