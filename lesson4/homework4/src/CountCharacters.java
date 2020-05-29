@@ -3,7 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
 
-public class CountCharacters2
+public class CountCharacters
 {
     public static void main(String[] args) throws IOException {
         if (args.length == 0) {
