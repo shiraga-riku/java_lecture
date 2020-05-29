@@ -1,8 +1,7 @@
 package jp.co.aivick.demo.controller;
 
 import java.util.List;
-import javax.swing.DefaultBoundedRangeModel;
-import jp.co.aivick.demo.model.User;
+import jp.co.aivick.demo.entity.User;
 import jp.co.aivick.demo.service.DefaultUserService;
 import jp.co.aivick.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

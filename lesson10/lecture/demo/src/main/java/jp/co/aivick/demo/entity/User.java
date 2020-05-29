@@ -1,4 +1,4 @@
-package jp.co.aivick.demo.model;
+package jp.co.aivick.demo.entity;
 
 public class User
 {

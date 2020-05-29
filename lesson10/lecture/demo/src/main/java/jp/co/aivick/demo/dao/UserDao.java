@@ -1,7 +1,7 @@
 package jp.co.aivick.demo.dao;
 
 import java.util.List;
-import jp.co.aivick.demo.model.User;
+import jp.co.aivick.demo.entity.User;
 
 public interface UserDao
 {

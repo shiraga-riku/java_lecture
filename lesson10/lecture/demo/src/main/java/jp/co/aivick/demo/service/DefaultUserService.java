@@ -2,7 +2,7 @@ package jp.co.aivick.demo.service;
 
 import java.util.List;
 import jp.co.aivick.demo.dao.UserDao;
-import jp.co.aivick.demo.model.User;
+import jp.co.aivick.demo.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

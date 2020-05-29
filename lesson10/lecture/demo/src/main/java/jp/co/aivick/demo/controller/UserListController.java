@@ -1,8 +1,7 @@
 package jp.co.aivick.demo.controller;
 
 import java.util.List;
-import jp.co.aivick.demo.model.User;
-import org.springframework.context.annotation.Conditional;
+import jp.co.aivick.demo.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
