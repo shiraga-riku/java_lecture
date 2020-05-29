@@ -8,7 +8,7 @@
 
 <h2>簡単足し算アプリ</h2>
 
-<form action="/firstweb/form" method="POST">
+<form action="/firstweb/firstform" method="POST">
 
     <input type="text" name="num1" value="${num1}">
     ＋

@@ -49,6 +49,11 @@
         <groupId>org.apache.tomcat.maven</groupId>
         <artifactId>tomcat7-maven-plugin</artifactId>
         <version>2.2</version>
+        <configuration>
+          <systemProperties>
+            <MAVEN_OPTS>-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8080</MAVEN_OPTS>
+          </systemProperties>
+        </configuration>
       </plugin>
     </plugins>
   </build>

@@ -9,14 +9,14 @@ services:
       - ./repository:/root/.m2/repository
     working_dir: /app
     ports:
-      - 8888:8080
+      - ${JDK_PORT:-8080}:8080
 
   tomcat:
     image: tomcat:jdk13-openjdk-slim-buster
     volumes:
       - ./webapps:/usr/local/tomcat/webapps
     ports:
-      - 8889:8080
+      - ${TOMCAT_PORT:-8081}:8080
 
   mysql:
     image: mysql:8.0.19
