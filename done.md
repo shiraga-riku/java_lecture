@@ -73,9 +73,13 @@
 
 * 前回課題のレビュー・解説
 * SpringBoot入門
-* DIコンテナとSpringMVC
+  * DIコンテナとSpringMVC
 * 実践課題の解説
 
 ## Day11
 5/29 3H
 
+* 前回課題のレビュー・解説
+* SpringBoot実践
+  * Bean Validation、トランザクション管理、多言語化、レイアウト構築
+* 実践課題の解説 
