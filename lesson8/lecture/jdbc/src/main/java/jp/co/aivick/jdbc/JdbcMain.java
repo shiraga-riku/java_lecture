@@ -89,6 +89,11 @@ public class JdbcMain
                 statement.setDouble(2, cal);
 
                 int rows = statement.executeUpdate();
+
+                if (cal == 0) {
+                    throw new RuntimeException("zero");
+                }
+
                 connection.commit();
             }
             catch (Exception e) {
