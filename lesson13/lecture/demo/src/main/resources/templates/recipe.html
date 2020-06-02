@@ -9,6 +9,10 @@
 
 <h2>レシピ一覧</h2>
 
+<div>最大カロリー: <span th:text="${recipeSet.calMin().format(2)}"></span></div>
+<div>最小カロリー: <span th:text="${recipeSet.calMax().format(2)}"></span></div>
+<div>平均カロリー: <span th:text="${recipeSet.calAverage().format(2)}"></span></div>
+
 <table>
   <thead>
   <tr>
@@ -18,14 +22,12 @@
   </tr>
   </thead>
   <tbody>
-  <tr th:each="recipe : ${recipes}" th:object="${recipe}">
+  <tr th:each="recipe : ${recipeSet.all()}" th:object="${recipe}">
     <td th:text="*{id}"></td>
     <td th:text="*{name}"></td>
     <td th:text="*{cal}"></td>
   </tr>
-
   </tbody>
-
 </table>
 
 </body>

@@ -1,5 +1,7 @@
 package jp.co.aivick.demo.entity;
 
+import java.util.Objects;
+import jp.co.aivick.demo.domain.Calory;
 import org.seasar.doma.Column;
 import org.seasar.doma.Entity;
 import org.seasar.doma.GeneratedValue;
@@ -38,11 +40,28 @@ public class Recipe
         this.name = name;
     }
 
-    public Double getCal() {
-        return cal;
+    public Calory getCal() {
+        return new Calory(cal);
     }
 
-    public void setCal(Double cal) {
-        this.cal = cal;
+    public void setCal(Calory cal) {
+        this.cal = cal.value();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Recipe recipe = (Recipe) o;
+        return Objects.equals(id, recipe.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

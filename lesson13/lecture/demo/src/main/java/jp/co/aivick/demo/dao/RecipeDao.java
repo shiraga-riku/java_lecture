@@ -11,15 +11,10 @@ import org.seasar.doma.boot.ConfigAutowireable;
 public interface RecipeDao
 {
     @Select
-    Recipe find(String id);
+    Recipe find(Integer id);
 
     @Select
     List<Recipe> findAll();
-
-
-
-
-
 }
 
 

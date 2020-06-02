@@ -1,6 +1,6 @@
 package jp.co.aivick.demo.controller;
 
-import jp.co.aivick.demo.dao.RecipeDao;
+import jp.co.aivick.demo.service.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/recipes")
 public class RecipeController
 {
-    private RecipeDao recipeDao;
+    final private RecipeService recipeService;
 
-    public RecipeController(RecipeDao recipeDao) {
-        this.recipeDao = recipeDao;
+    public RecipeController(RecipeService recipeService) {
+        this.recipeService = recipeService;
     }
 
     @RequestMapping
     public String recipes(Model model) {
-        model.addAttribute("recipes", recipeDao.findAll());
+        model.addAttribute("recipeSet", recipeService.findAll());
         return "recipe.html";
     }
 }
