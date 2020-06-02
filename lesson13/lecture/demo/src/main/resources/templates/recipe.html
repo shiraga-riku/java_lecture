@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      layout:decorate="~{layout/layout}">
+<head>
+  <title>Spring Boot Test Samples</title>
+</head>
+<body>
+
+<h2>レシピ一覧</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>レシピID</th>
+    <th>レシピ名</th>
+    <th>カロリー</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="recipe : ${recipes}" th:object="${recipe}">
+    <td th:text="*{id}"></td>
+    <td th:text="*{name}"></td>
+    <td th:text="*{cal}"></td>
+  </tr>
+
+  </tbody>
+
+</table>
+
+</body>
+</html>
