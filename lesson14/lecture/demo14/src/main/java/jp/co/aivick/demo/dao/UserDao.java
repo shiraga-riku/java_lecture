@@ -18,6 +18,9 @@ public interface UserDao
     User find(String id);
 
     @Select
+    User findByLoginId(String loginId);
+
+    @Select
     List<User> findALl();
 
     @Insert

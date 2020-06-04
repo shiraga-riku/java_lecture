@@ -57,11 +57,65 @@
 
               <span th:text="*{cal.format(2)}"></span>
             </p>
+
+            <div class="level">
+              <span class="icon fa-2x">
+                <!-- レシピをlikeしている -->
+              <a th:style="'display:' + (${recipe.likedByUser} ? 'none' : '')"
+                 th:onclick="|like(this, '*{id}', true)|"
+                 class="has-text-success">
+                <i class="far fa-heart"></i>
+              </a>
+                <!-- レシピをlikeしていない -->
+              <a th:style="'display:' + (${recipe.likedByUser} ? '' : 'none')"
+                 th:onclick="|like(this, '*{id}', false)|"
+                 class="has-text-success">
+                <i class="fas fa-heart"></i>
+              </a>
+              </span>
+            </div>
+
+
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <script type="text/javascript">
+
+    function like(element, recipeId, doLike) {
+
+      const token = document.querySelector("meta[name='_csrf']").attributes['content'].value;
+      const header = document.querySelector(
+          "meta[name='_csrf_header']").attributes['content'].value;
+
+      let r = new XMLHttpRequest();
+      if (doLike) {
+        r.open("POST", "/recipes/like");
+      } else {
+        r.open("POST", "/recipes/unlike");
+      }
+      r.setRequestHeader(header, token);
+      r.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+          if (doLike) {
+            element.style.display = 'none';
+            element.nextElementSibling.style.display = '';
+
+          } else {
+            element.style.display = 'none';
+            element.previousElementSibling.style.display = '';
+          }
+        }
+      };
+      r.send(`recipeId=${recipeId}`);
+
+    }
+
+  </script>
+
 </div>
 </body>
 </html>

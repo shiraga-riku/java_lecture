@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Objects;
 import jp.co.aivick.demo.entity.Recipe;
 
-public class RecipeSet
+public class RecipeSet<T extends Recipe>
 {
-    final private List<Recipe> recipes;
+    final private List<T> recipes;
 
-    public RecipeSet(List<Recipe> recipes) {
+    public RecipeSet(List<T> recipes) {
         this.recipes = recipes;
     }
 
@@ -37,7 +37,7 @@ public class RecipeSet
         return new Calory(avg.orElseGet(() -> 0));
     }
 
-    public List<Recipe> all() {
+    public List<T> all() {
         return Collections.unmodifiableList(this.recipes);
     }
 

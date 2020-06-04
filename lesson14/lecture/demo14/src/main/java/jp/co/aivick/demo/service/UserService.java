@@ -21,6 +21,8 @@ public class UserService
         return userDao.find(id);
     }
 
+    public User findByLoginId(String loginId) { return userDao.findByLoginId(loginId); }
+
     public List<User> findAll() {
         return this.userDao.findALl();
     }

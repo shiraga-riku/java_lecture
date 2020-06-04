@@ -1,5 +1,6 @@
 package jp.co.aivick.demo.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 import org.seasar.doma.Column;
 import org.seasar.doma.Entity;
@@ -12,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "users")
-public class User
+public class User implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
