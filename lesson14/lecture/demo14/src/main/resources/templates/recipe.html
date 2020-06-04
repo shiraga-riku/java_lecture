@@ -90,28 +90,25 @@
       const header = document.querySelector(
           "meta[name='_csrf_header']").attributes['content'].value;
 
-      let r = new XMLHttpRequest();
-      if (doLike) {
-        r.open("POST", "/recipes/like");
-      } else {
-        r.open("POST", "/recipes/unlike");
-      }
-      r.setRequestHeader(header, token);
-      r.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      r.onreadystatechange = function () {
-        if (r.readyState == 4 && r.status == 200) {
-          if (doLike) {
-            element.style.display = 'none';
-            element.nextElementSibling.style.display = '';
-
-          } else {
-            element.style.display = 'none';
-            element.previousElementSibling.style.display = '';
+      let url = doLike ? "/recipes/like" : "/recipes/unlike";
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          "Content-Type": 'application/x-www-form-urlencoded',
+          [header]: token
+        },
+        body: `recipeId=${recipeId}`
+      }).then(
+          response => {
+            if (doLike) {
+              element.style.display = 'none';
+              element.nextElementSibling.style.display = '';
+            } else {
+              element.style.display = 'none';
+              element.previousElementSibling.style.display = '';
+            }
           }
-        }
-      };
-      r.send(`recipeId=${recipeId}`);
-
+      );
     }
 
   </script>
