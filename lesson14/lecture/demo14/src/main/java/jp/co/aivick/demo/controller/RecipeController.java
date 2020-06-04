@@ -1,5 +1,10 @@
 package jp.co.aivick.demo.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
+import jp.co.aivick.demo.domain.RecipeSet;
+import jp.co.aivick.demo.entity.Recipe;
 import jp.co.aivick.demo.entity.User;
 import jp.co.aivick.demo.service.RecipeService;
 import jp.co.aivick.demo.service.UserService;
@@ -31,6 +36,14 @@ public class RecipeController
         model.addAttribute("recipeSet", recipeService.findAllWithLike(user.getId()));
         model.addAttribute("user", user);
         return "recipe.html";
+    }
+
+    @RequestMapping("/json")
+    @ResponseBody
+    @JsonSerialize
+    public List<Recipe> recipes(Model model) {
+
+        return recipeService.findAll().all();
     }
 
     @PostMapping("/like")

@@ -13,11 +13,11 @@ public class Calory
         this.value = value;
     }
 
-    public double value() {
+    public double getValue() {
         return this.value;
     }
 
-    public double value(int precision) {
+    public double getValue(int precision) {
         double x = Math.pow(10, precision);
         return Math.round(this.value * x) / x;
     }
@@ -27,7 +27,7 @@ public class Calory
     }
 
     public String format(int precision) {
-        return String.format("%." + precision + "f Kcal", this.value());
+        return String.format("%." + precision + "f Kcal", this.getValue());
     }
 
     @Override

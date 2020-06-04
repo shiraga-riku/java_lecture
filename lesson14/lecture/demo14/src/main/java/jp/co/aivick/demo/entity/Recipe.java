@@ -45,7 +45,7 @@ public class Recipe
     }
 
     public void setCal(Calory cal) {
-        this.cal = cal.value();
+        this.cal = cal.getValue();
     }
 
     @Override
