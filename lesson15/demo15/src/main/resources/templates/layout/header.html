@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <body>
+
+    <nav
+        class="navbar is-primary"
+        role="navigation"
+        aria-label="main navigation"
+        id="global-header"
+        layout:fragment="header">
+      <div class="navbar-brand">
+        <div class="navbar-item">
+          <strong>Spring Boot + Ajax Samples</strong>
+        </div>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <a
+              class="navbar-item"
+              th:if="${#authorization.expression('isAuthenticated()')}"
+              th:text="|${#authentication.principal.username}さん|"
+              >
+          </a>
+        </div>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <form
+                  th:if="${#authorization.expression('isAuthenticated()')}"
+                  th:action="@{/logout}"
+                  method="post">
+                <button
+                    type="submit"
+                    class="button is-light">ログアウト
+                </button>
+              </form>
+
+              <a
+                  class="button is-light"
+                  th:unless="${#authorization.expression('isAuthenticated()')}"
+                  th:href="@{/signup}">
+                ユーザ登録
+              </a>
+              <a
+                  class="button is-light"
+                  th:unless="${#authorization.expression('isAuthenticated()')}"
+                  th:href="@{/login}">
+                ログイン
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>
