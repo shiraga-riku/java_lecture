@@ -30,8 +30,8 @@ public class RecipeService
         return new RecipeSet<Recipe>(recipeDao.findByMenuId(menuId));
     }
 
-    public RecipeSet<Recipe> findAll() {
-        return new RecipeSet<Recipe>(this.recipeDao.findAll());
+    public RecipeSet<Recipe> findAll(String recipeName) {
+        return new RecipeSet<Recipe>(this.recipeDao.findAll(recipeName));
     }
 
     public RecipeSet<RecipeLikedUser> findAllWithLike(Integer userId) {

@@ -22,13 +22,13 @@ public class SignUpController
     @GetMapping
     public String showSignup(Model model) {
         model.addAttribute("userForm", new UserForm());
-        return "signup/index.html";
+        return "signup/index";
     }
 
     @PostMapping
     public String register(@Validated UserForm userForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "signup/index.html";
+            return "signup/index";
         }
 
         User user = new User();

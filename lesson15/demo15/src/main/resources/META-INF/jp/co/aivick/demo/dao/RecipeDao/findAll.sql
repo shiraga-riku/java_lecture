@@ -1,3 +1,6 @@
 select
     /*%expand*/*
-from recipes
+from recipes where
+/*%if recipeName != null */
+        recipe_name like /* @infix(recipeName) */'name'
+/*%end*/

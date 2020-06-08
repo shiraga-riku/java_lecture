@@ -89,4 +89,9 @@ public class MenuForm
     public void setRecipes(List<RecipeForm> recipeForms) {
         this.recipes = recipeForms;
     }
+
+    public boolean recipeSelected() {
+        return this.recipes.stream()
+                           .anyMatch(r -> r.getSelected());
+    }
 }

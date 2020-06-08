@@ -17,7 +17,7 @@ public interface RecipeDao
     Recipe find(Integer id);
 
     @Select
-    List<Recipe> findAll();
+    List<Recipe> findAll(String recipeName);
 
     @Select
     List<RecipeLikedUser> findAllWithLike(Integer userId);

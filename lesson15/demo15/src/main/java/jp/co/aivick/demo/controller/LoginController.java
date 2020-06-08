@@ -9,6 +9,6 @@ public class LoginController
 {
     @RequestMapping
     public String showLoginForm() {
-        return "login.html";
+        return "login";
     }
 }

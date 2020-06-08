@@ -27,6 +27,6 @@ public class UserController
         List<User> users = userService.findAll();
         model.addAttribute("users", users);
 
-        return "admin/users/list.html";
+        return "admin/users/list";
     }
 }

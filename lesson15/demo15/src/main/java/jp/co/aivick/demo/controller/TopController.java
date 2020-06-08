@@ -1,15 +1,14 @@
-package jp.co.aivick.demo.controller.admin;
+package jp.co.aivick.demo.controller;
 
-import groovy.transform.Generated;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller("AdminTopController")
-@RequestMapping("/admin/top")
+@Controller
+@RequestMapping("/top")
 public class TopController
 {
     @RequestMapping
     public String show() {
-        return "admin/top";
+        return "top";
     }
 }

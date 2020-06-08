@@ -12,6 +12,7 @@ import jp.co.aivick.demo.service.MenuService;
 import jp.co.aivick.demo.service.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,15 +34,20 @@ public class MenuController
 
     @GetMapping("/create")
     public String showCreateForm(MenuForm menuForm) {
-        var recipeSet = recipeService.findAll();
+        var recipeSet = recipeService.findAll(null);
         menuForm.setRecipes(this.toRecipeForms(recipeSet));
-        return "admin/menus/create.html";
+        return "admin/menu/create";
     }
 
     @PostMapping("/create")
     public String create(@Validated MenuForm menuForm, BindingResult bindingResult) {
+        if (!menuForm.recipeSelected()) {
+            bindingResult.addError(
+                new FieldError(bindingResult.getObjectName(), "recipe", "レシピを選択してください。"));
+        }
+
         if (bindingResult.hasErrors()) {
-            return "admin/menus/create.html";
+            return "admin/menu/create";
         }
 
         return updateMenuAndRedirect(menuForm, null);
@@ -51,7 +57,7 @@ public class MenuController
     public String showUpdateForm(@PathVariable Integer id, MenuForm menuForm) {
         var menu = menuService.findBy(id);
         var menuRecipeSet = recipeService.findByMenuId(menu.getId());
-        var allRecipeSet = recipeService.findAll();
+        var allRecipeSet = recipeService.findAll(null);
 
         var recipeFormList = this.toRecipeForms(allRecipeSet);
         recipeFormList.forEach(recipeForm -> {
@@ -66,14 +72,18 @@ public class MenuController
                              .getValue());
         menuForm.setRecipes(recipeFormList);
 
-        return "admin/menus/update.html";
+        return "admin/menu/update";
     }
 
     @PostMapping("/update/{id}")
     public String update(@PathVariable Integer id, @Validated MenuForm menuForm,
         BindingResult bindingResult) {
+        if (!menuForm.recipeSelected()) {
+            bindingResult.addError(
+                new FieldError(bindingResult.getObjectName(), "recipe", "レシピを選択してください。"));
+        }
         if (bindingResult.hasErrors()) {
-            return "admin/menus/update.html";
+            return "admin/menu/update";
         }
 
         return updateMenuAndRedirect(menuForm, id);
@@ -90,7 +100,7 @@ public class MenuController
                                 .map(RecipeForm::getId)
                                 .collect(Collectors.toList());
 
-        if (menuId == null){
+        if (menuId == null) {
             menuService.create(menu, recipeIds);
         }
         else {
