@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+  <title th:text="#{recipe.list}">レシピ一覧</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title" th:text="#{recipe.list}">レシピ一覧</h1>
+        <div class="tile is-ancestor">
+          <div class="tile is-parent" style="padding: 0.75rem;">
+            <div class="tile is-child notification is-primary is-light box">
+              <p class="title">件数</p>
+              <p class="subtitle" th:text="${recipeSet.all().size()}"></p>
+            </div>
+          </div>
+          <div class="tile is-parent" style="padding: 0.75rem;">
+            <div class="tile is-child notification is-info is-light box">
+              <p class="title">最大カロリー</p>
+              <p class="subtitle" th:text="${recipeSet.calMax().format(2)}"></p>
+            </div>
+          </div>
+          <div class="tile is-parent" style="padding: 0.75rem;">
+            <div class="tile is-child notification is-warning is-light box">
+              <p class="title">最小カロリー</p>
+              <p class="subtitle" th:text="${recipeSet.calMin().format(2)}"></p>
+            </div>
+          </div>
+          <div class="tile is-parent" style="padding: 0.75rem;">
+            <div class="tile is-child notification is-danger is-light box">
+              <p class="title">平均カロリー</p>
+              <p class="subtitle" th:text="${recipeSet.calAverage().format(2)}"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  <div class="section">
+    <div class="container">
+      <div class="box" th:each="recipe : ${recipeSet.all()}" th:object="${recipe}">
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong class="is-size-4" th:text="*{name}"></strong>
+              <small class="is-pulled-right">
+                <strong>ID</strong>
+                <span th:text="*{id}"></span>
+              </small>
+              <br>
+
+              <span th:text="*{cal.format(2)}"></span>
+            </p>
+
+            <div class="level">
+              <span class="icon fa-2x">
+                <!-- レシピをlikeしている -->
+              <a th:style="'display:' + (${recipe.likedByUser} ? 'none' : '')"
+                 th:onclick="|like(this, '*{id}', true)|"
+                 class="has-text-success">
+                <i class="far fa-heart"></i>
+              </a>
+                <!-- レシピをlikeしていない -->
+              <a th:style="'display:' + (${recipe.likedByUser} ? '' : 'none')"
+                 th:onclick="|like(this, '*{id}', false)|"
+                 class="has-text-success">
+                <i class="fas fa-heart"></i>
+              </a>
+              </span>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+    function like(element, recipeId, doLike) {
+
+      const token = document.querySelector("meta[name='_csrf']").attributes['content'].value;
+      const header = document.querySelector(
+          "meta[name='_csrf_header']").attributes['content'].value;
+
+      let url = doLike ? "/recipes/like" : "/recipes/unlike";
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          "Content-Type": 'application/x-www-form-urlencoded',
+          [header]: token
+        },
+        body: `recipeId=${recipeId}`
+      }).then(
+          response => {
+            if (doLike) {
+              element.style.display = 'none';
+              element.nextElementSibling.style.display = '';
+            } else {
+              element.style.display = 'none';
+              element.previousElementSibling.style.display = '';
+            }
+          }
+      );
+    }
+
+  </script>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
+<head>
+  <meta charset="UTF-8">
+  <title>Top</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="content">
+    <ul>
+      <li><a href="/recipe/list">レシピ一覧</a></li>
+
+      <div sec:authorize="hasAuthority('ADMIN')">
+        <li><a href="/admin/top">管理者TOP</a></li>
+      </div>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

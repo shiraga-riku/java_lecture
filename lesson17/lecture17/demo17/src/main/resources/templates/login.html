@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layout/layout}">
+
+<head>
+  <title th:text="#{login}">ユーザ登録</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div th:if="${param.error}">
+          ログインIDかパスワードが間違っています。
+        </div>
+        <div th:if="${param.logout}">
+          ログアウトしました。
+        </div>
+
+        <form th:action="@{/login}" method="post">
+          <div class="columns is-centered">
+            <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+              <div class="field">
+                <label class="label" th:text="#{loginId}">ログインID</label>
+                <div class="control has-icons-left">
+                  <input type="text" name="login_id" class="input" required/>
+                  <span class="icon is-small is-left">
+                  <i class="fa fa-fingerprint"></i>
+                </span>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label" th:text="#{password}">パスワード</label>
+                <div class="control has-icons-left">
+                  <input type="password" name="password" class="input" required/>
+                  <span class="icon is-small is-left">
+                  <i class="fa fa-lock"></i>
+                </span>
+                </div>
+              </div>
+              <div class="field">
+                <button class="button is-success" th:text="#{login}">
+                  ログイン
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>
