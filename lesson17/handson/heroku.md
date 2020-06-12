@@ -35,23 +35,26 @@ spring.datasource.driverClassName=com.mysql.jdbc.Driver
  
 [インストールページ](https://devcenter.heroku.com/articles/heroku-cli)
 
-# Heroku Java CLI Plugin をインストール。
-
-今回は作成したJarをHerokuにデプロイするため、Java用のCLIを導入する。
-
-```
-$ heroku plugins:install java
-```
-
 # Herokuにアプリケーションを登録する。
 
 作成中のプロジェクト直下に移動し、```heroku create```によりHerokuにアプリケーションを作成する。
 
 ```
 $ cd to-your-application-path
-$ heroku create --no-remote
+$ heroku create 
 Creating app... done, ⬢ quiet-lake-44586
 https://quiet-lake-44586.herokuapp.com/ | https://git.heroku.com/quiet-lake-44586.git
+```
+
+上記の実行後に自動的にHeroku上にアプリケーションのGitリポジトリが作成され、リモートリポジトリの１つとして登録される。
+以下のコマンドで確認できる。
+
+```
+$ git remote -v
+heroku  https://git.heroku.com/fast-fortress-27415.git (fetch)
+heroku  https://git.heroku.com/fast-fortress-27415.git (push)
+origin  https://github.com/pebblip/simple-menu-app.git (fetch)
+origin  https://github.com/pebblip/simple-menu-app.git (push)
 ```
 
 コマンドの実行後にアプリケーション名が表示される（上の例では、**quiet-lake-44586**)ので控えておく。
@@ -67,14 +70,7 @@ java.runtime.version=13
 
 # ```Procfile```ファイルを作成する。
 
-```Procfile```ファイルはHeroku上でアプリケーション起動時のコマンドを指定する。
-プロジェクト直下に以下のような```Procfile```を作成する。
-
-```
-web: java  -Dspring.profiles.active=production -Dserver.port=$PORT -jar target/demo-0.0.1-SNAPSHOT.jar
-```
-
-※jarのファイル名は各自の環境に合わせて適当に変更してください。
+今回はHeroku標準の方法でデプロイするのでなし。
  
 # HerokuにMySQLをセットアップする。
 
@@ -84,7 +80,7 @@ Heroku標準のDBはPostgreSQLであるため、MySQL用のアドオンを導入
 アドオンを導入するためにはHerokuにクレジットカードの登録が必要・・・（無料だが）
 
 ```
-$ heroku addons:create jawsdb --version=8.0 --app アプリケーション名
+$ heroku addons:create jawsdb --version=8.0
 ```
  
 ※アプリケーション名は、heroku create で作成されたアプリケーション名。
@@ -110,20 +106,13 @@ $ heroku config:set DB_PASSWORD=kmz3jqef6up2lb58 --app アプリケーション�
 ここで設定した環境変数は、```application-production.properties```内で参照している値であることに注意。
 
 
-# アプリケーションをビルドする。
+# Herokuにアプリケーションをデプロイする。
 
-アプリケーションディレクトリ直下に移動し、以下のコマンドでSpring bootアプリケーションをパッケージングしてjarファイルを生成する。
-
-```
-$ ./mvnw package
-```
-
-# ビルド後のjarファイルをHerokuにデプロイする。
-
-以下のコマンドを実行してHerokuにjarファイルをデプロイする。jarファイル名は各自が生成したファイル名に変更すること。
+以下のGitコマンドを実行してHerokuにアプリケーションをpushする。
+これにより、Herokuは自動的にアプリケーションのビルドとデプロイを行う。
 
 ```
-$ heroku deploy:jar target/demo-0.0.1-SNAPSHOT.jar --app アプリケーション名
+$ git push heroku master
 ```
 
 # デプロイされたアプリケーションを確認する。
@@ -131,5 +120,5 @@ $ heroku deploy:jar target/demo-0.0.1-SNAPSHOT.jar --app アプリケーショ�
 以下のコマンドによりデプロイされたアプリケーションがブラウザに表示される。
 
 ```
-$ heroku open --app アプリケーション名
+$ heroku open
 ```   
