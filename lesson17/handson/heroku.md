@@ -98,9 +98,9 @@ JAWSDB_URL:  mysql://ms41ocshk0989u4b:kmz3jqef6up2lb58@phtfaw4p6a970uc0.cbetxkdy
 以下は、上記の接続情報の例であるので、各自の接続情報に合わせて変更すること。
 
 ```
-$ heroku config:set DB_URL=jdbc:mysql://ms41ocshk0989u4b:kmz3jqef6up2lb58@phtfaw4p6a970uc0.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/t53rngqioysngu2f --app アプリケーション名
-$ heroku config:set DB_USERNAME: ms41ocshk0989u4b --app アプリケーション名
-$ heroku config:set DB_PASSWORD=kmz3jqef6up2lb58 --app アプリケーション名
+$ heroku config:set DB_URL=mysql://ms41ocshk0989u4b:kmz3jqef6up2lb58@phtfaw4p6a970uc0.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/t53rngqioysngu2f 
+$ heroku config:set DB_USERNAME=ms41ocshk0989u4b 
+$ heroku config:set DB_PASSWORD=kmz3jqef6up2lb58 
 ```
 
 ここで設定した環境変数は、```application-production.properties```内で参照している値であることに注意。
