@@ -90,7 +90,7 @@ $ heroku addons:create jawsdb --version=8.0
 ```heroku config```により、作成されたデータベースの接続情報を確認する。
 
 ```
-$ heroku config --app アプリケーション名
+$ heroku config
 JAWSDB_URL:  mysql://ms41ocshk0989u4b:kmz3jqef6up2lb58@phtfaw4p6a970uc0.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/t53rngqioysngu2f
 ```
 
